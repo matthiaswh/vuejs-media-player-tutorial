@@ -43,7 +43,7 @@ var app = new Vue({
     activeTrack: 0,
     audioElement: null,
     status: STATUSES.STOPPED,
-    volume: 0.5
+    volume: 5
   },
 
   methods: {
@@ -67,6 +67,7 @@ var app = new Vue({
 
       this.activeTrack = index;
       this.audioElement = new Audio(this.tracks[index].url);
+      this.updateVolume();
       this.status = STATUSES.STOPPED;
 
       this.audioElement.addEventListener('ended', this.loadNextTrack);
@@ -92,6 +93,10 @@ var app = new Vue({
     pause: function () {
       this.status = STATUSES.PAUSED;
       this.audioElement.pause();
+    },
+
+    updateVolume: function () {
+      this.audioElement ? this.audioElement.volume = (this.volume / 10) : null;
     }
   },
 
@@ -106,6 +111,12 @@ var app = new Vue({
 
     isTrackLoaded: function () {
       return (this.activeTrack !== null) && this.audioElement;
+    }
+  },
+
+  watch: {
+    volume: function (val) {
+      this.updateVolume();
     }
   }
 });

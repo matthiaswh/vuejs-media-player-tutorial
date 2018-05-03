@@ -30,6 +30,7 @@
   background-color: #353b48;
   margin-top: 6px;
   padding: 16px;
+  position: relative;
 }
 
 .media-player__play-pause-button {
@@ -48,4 +49,42 @@
 .media-player__play-pause-button:hover {
   box-shadow: 0px 0px 1px 0px #7f8fa6;
   color: #fbc531;
+}
+
+.media-player__volume-container {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: calc(50% - 8px);
+  width: 25%;
+  margin: 0 40px;
+}
+
+.media-player__volume-container input {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #718093;
+  outline: none;
+  opacity: 0.8;
+  transition: opacity .2s;
+}
+
+.media-player__volume-container input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 6px; 
+    background: #e1b12c;
+    cursor: pointer;
+}
+
+.media-player__volume-container input::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 6px;
+    background: #e1b12c;
+    cursor: pointer;
 }
