@@ -69,7 +69,19 @@ var app = new Vue({
       this.audioElement = new Audio(this.tracks[index].url);
       this.status = STATUSES.STOPPED;
 
+      this.audioElement.addEventListener('ended', this.loadNextTrack);
+
       if (autoplay) this.play();
+    },
+
+    loadNextTrack: function (autoplay=true) {
+      this.activeTrack++;
+
+      if (this.activeTrack >= this.tracks.length) {
+        this.activeTrack = 0;
+      }
+
+      this.loadTrack(this.activeTrack, autoplay);
     },
 
     play: function () {
