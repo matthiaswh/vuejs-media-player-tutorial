@@ -1,0 +1,25 @@
+#media-player {
+  background-color: #2f3640;
+  border-radius: 6px;
+  color: #ffffff;
+  padding: 16px;
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+#media-player ul {
+  background-color: #353b48;
+  border-radius: 6px;
+  padding: 16px;
+}
+
+#media-player ul li a {
+  display: block;
+  color: #ffffff;
+  padding: 8px;
+}
+
+#media-player ul li:hover, #media-player ul li.is-active {
+  color: #ffffff;
+  background-color: #718093;
+}

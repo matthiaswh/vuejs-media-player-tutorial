@@ -32,6 +32,17 @@
         </ul>
     </div>
   </div>
+  <div class="column is-6 is-offset-3">
+    <div id="media-player">
+      <ul>
+        <li
+          v-for='track in tracks'
+        >
+          <a>{{ track.title }} by {{ track.artist }}</a>
+        </li>
+      </ul>      
+    </div>
+  </div>
 </section>
 
 <footer class="footer">
