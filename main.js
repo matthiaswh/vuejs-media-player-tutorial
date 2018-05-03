@@ -41,12 +41,42 @@ var app = new Vue({
       }
     ],
     activeTrack: 0,
+    audioElement: null,
     status: STATUSES.STOPPED,
     volume: 0.5
   },
 
   methods: {
-    toggleStatus: function () {}
+    toggleStatus: function () {
+      if ( !this.isTrackLoaded ) {
+        this.loadTrack(this.activeTrack || 0);
+      }
+
+      if ( !this.isPlaying ) {
+        this.play();
+        return;
+      }
+
+      this.pause();
+    },
+
+    loadTrack: function (index) {
+      if ( index >= this.tracks.length ) return false; // we should probably do something when the track doesn't exist
+
+      this.activeTrack = index;
+      this.audioElement = new Audio(this.tracks[index].url);
+      this.status = STATUSES.STOPPED;
+    },
+
+    play: function () {
+      this.status = STATUSES.PLAYING;
+      this.audioElement.play();
+    },
+
+    pause: function () {
+      this.status = STATUSES.PAUSED;
+      this.audioElement.pause();
+    }
   },
 
   computed: {
@@ -56,6 +86,10 @@ var app = new Vue({
 
     isPlaying: function () {
       return STATUSES.PLAYING === this.status;
+    },
+
+    isTrackLoaded: function () {
+      return (this.activeTrack !== null) && this.audioElement;
     }
   }
 });
