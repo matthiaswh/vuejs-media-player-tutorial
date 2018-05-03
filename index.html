@@ -59,6 +59,13 @@
             }"
           ></i>
         </a>
+        <div class="media-player__playback-container">
+          <div
+            :style="{ width: progress + '%' }"
+          >            
+          </div>
+          <span class='duration'>{{ prettyDuration }}</span>
+        </div>
         <div class="media-player__volume-container">
           <input type="range" min='0' max='10' step='0.5' v-model='volume' />
         </div>

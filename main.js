@@ -43,7 +43,9 @@ var app = new Vue({
     activeTrack: 0,
     audioElement: null,
     status: STATUSES.STOPPED,
-    volume: 5
+    duration: '0:00',
+    volume: 5,
+    progress: 0
   },
 
   methods: {
@@ -71,6 +73,13 @@ var app = new Vue({
       this.status = STATUSES.STOPPED;
 
       this.audioElement.addEventListener('ended', this.loadNextTrack);
+      // this.audioElement.addEventListener('timeupdate ', this.updateProgress); // this one's not being fired for me :/
+      this.audioElement.ontimeupdate = this.updateProgress;
+
+      var $vm = this;
+      this.audioElement.addEventListener('durationchange', function () {
+        $vm.duration = $vm.audioElement.duration;
+      });
 
       if (autoplay) this.play();
     },
@@ -97,6 +106,12 @@ var app = new Vue({
 
     updateVolume: function () {
       this.audioElement ? this.audioElement.volume = (this.volume / 10) : null;
+    },
+
+    updateProgress: function () {
+      if (!this.audioElement || !this.audioElement.currentTime) return this.progress = 0;
+
+      this.progress = (this.audioElement.currentTime / this.audioElement.duration) * 100;
     }
   },
 
@@ -111,6 +126,12 @@ var app = new Vue({
 
     isTrackLoaded: function () {
       return (this.activeTrack !== null) && this.audioElement;
+    },
+
+    prettyDuration: function () {
+      if (!this.audioElement || !this.duration) return '0:00';
+
+      return parseInt(this.audioElement.duration / 60) + ':' + parseInt(this.audioElement.duration % 60);
     }
   },
 
