@@ -60,7 +60,7 @@ var app = new Vue({
       this.pause();
     },
 
-    loadTrack: function (index) {
+    loadTrack: function (index, autoplay=false) {
       if ( this.audioElement ) this.audioElement.pause();
 
       if ( index >= this.tracks.length ) return false; // we should probably do something when the track doesn't exist
@@ -68,6 +68,8 @@ var app = new Vue({
       this.activeTrack = index;
       this.audioElement = new Audio(this.tracks[index].url);
       this.status = STATUSES.STOPPED;
+
+      if (autoplay) this.play();
     },
 
     play: function () {

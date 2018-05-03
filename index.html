@@ -40,7 +40,7 @@
           :class="{ 'is-active': index === activeTrack }"
         >
           <a
-            @click='loadTrack(index)'
+            @click='loadTrack(index, true)'
             >
             {{ track.title }} by {{ track.artist }}
           </a>
