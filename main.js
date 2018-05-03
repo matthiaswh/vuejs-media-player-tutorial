@@ -43,5 +43,19 @@ var app = new Vue({
     activeTrack: 0,
     status: STATUSES.STOPPED,
     volume: 0.5
+  },
+
+  methods: {
+    toggleStatus: function () {}
+  },
+
+  computed: {
+    isPaused: function () {
+      return STATUSES.PAUSED === this.status;
+    },
+
+    isPlaying: function () {
+      return STATUSES.PLAYING === this.status;
+    }
   }
 });

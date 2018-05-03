@@ -40,7 +40,21 @@
         >
           <a>{{ track.title }} by {{ track.artist }}</a>
         </li>
-      </ul>      
+      </ul>
+      <div class="media-player__controls">
+        <a
+          class="media-player__play-pause-button"
+          @click="toggleStatus"
+        >
+          <i
+            class="far"
+            :class="{
+              'fa-play-circle': !isPlaying,
+              'fa-pause-circle': isPlaying
+            }"
+          ></i>
+        </a>
+      </div>   
     </div>
   </div>
 </section>

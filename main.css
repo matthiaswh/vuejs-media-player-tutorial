@@ -23,3 +23,29 @@
   color: #ffffff;
   background-color: #718093;
 }
+
+.media-player__controls {
+  width: 100%;
+  border-radius: 6px;
+  background-color: #353b48;
+  margin-top: 6px;
+  padding: 16px;
+}
+
+.media-player__play-pause-button {
+  display: inline-block;
+  font-size: 72px;
+  background-color: #718093;
+  color: #e1b12c;
+  width: 80px;
+  height: 80px;
+  line-height: 72px;
+  padding: 0;
+  padding-left: 4px;
+  border-radius: 50%;
+}
+
+.media-player__play-pause-button:hover {
+  box-shadow: 0px 0px 1px 0px #7f8fa6;
+  color: #fbc531;
+}
