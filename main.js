@@ -61,6 +61,8 @@ var app = new Vue({
     },
 
     loadTrack: function (index) {
+      if ( this.audioElement ) this.audioElement.pause();
+
       if ( index >= this.tracks.length ) return false; // we should probably do something when the track doesn't exist
 
       this.activeTrack = index;
