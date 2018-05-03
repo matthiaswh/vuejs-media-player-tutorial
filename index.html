@@ -36,9 +36,14 @@
     <div id="media-player">
       <ul>
         <li
-          v-for='track in tracks'
+          v-for='(track, index) in tracks'
+          :class="{ 'is-active': index === activeTrack }"
         >
-          <a>{{ track.title }} by {{ track.artist }}</a>
+          <a
+            @click='loadTrack(index)'
+            >
+            {{ track.title }} by {{ track.artist }}
+          </a>
         </li>
       </ul>
       <div class="media-player__controls">
